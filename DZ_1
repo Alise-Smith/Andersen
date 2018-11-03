@@ -1,0 +1,26 @@
+<script>
+    var person= {
+	          age: 7,
+	          name: 'Jone',
+	          appearance:{
+	                    weight:60,
+	                    height:{
+	                           a:50,
+	                           b:40,
+	                           c:{
+					             aa:0
+					             }
+	                           }     
+	                     }
+	             }
+   function clonePerson(person){
+    var personClone = {};
+    for (var key in person) 
+        if (typeof person[key] === 'object')
+            personClone[key] = clonePerson(person[key]);
+		else 
+            personClone[key] = person[key];
+    return personClone;
+  }
+	var clone=clonePerson(person);
+</script>
