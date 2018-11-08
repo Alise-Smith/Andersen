@@ -1,0 +1,41 @@
+<body>
+<script>
+    var family = {
+	           name:"Family",
+	           mother:{
+			       name:"Natasha",
+				   son:{
+				          name:"Kolya"
+						},
+			       daughter:{
+				          name:"Lena",
+				          vnuk:{
+				              name:"Georgiy",
+				              pravnuk:{
+						           name: "Sereja"
+                              }				   
+				                }
+			                 }
+	                   }
+				}
+   function tree(family){
+      var li=document.createElement("li");
+	    li.innerHTML=family.name;
+	    var childTrueOrFalse=false;
+	    for(var key in family)
+	      if(key!=name)
+	        childTrueOrFalse=true;
+	    if(childTrueOrFalse){
+	      var ul=document.createElement("ul");
+        for (var key in family) 
+          if (typeof family[key] === 'object')
+            ul.appendChild(tree(family[key]));
+		  li.appendChild(ul);
+		  }
+		return li;
+    }
+  ul=document.createElement("ul");
+  ul.appendChild(tree(family));
+  document.getElementsByTagName("body")[0].appendChild(ul);
+</script>
+</body>
