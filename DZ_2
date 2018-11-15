@@ -1,41 +1,30 @@
 <body>
 <script>
-    var family = {
-	           name:"Family",
-	           mother:{
-			       name:"Natasha",
-				   son:{
-				          name:"Kolya"
-						},
-			       daughter:{
-				          name:"Lena",
-				          vnuk:{
-				              name:"Georgiy",
-				              pravnuk:{
-						           name: "Sereja"
-                              }				   
-				                }
-			                 }
-	                   }
-				}
-   function tree(family){
-      var li=document.createElement("li");
-	    li.innerHTML=family.name;
-	    var childTrueOrFalse=false;
-	    for(var key in family)
-	      if(key!=name)
-	        childTrueOrFalse=true;
-	    if(childTrueOrFalse){
-	      var ul=document.createElement("ul");
-        for (var key in family) 
-          if (typeof family[key] === 'object')
-            ul.appendChild(tree(family[key]));
-		  li.appendChild(ul);
-		  }
+	var family={
+			name:"Family",
+			children:[{
+				      name:"child1",
+					  children:[{
+						       name:"child2",
+							   children:[]
+							   }]
+					  }]
+			   }
+	var changeFamily=JSON.parse(JSON.stringify(family));
+    function tree(family){
+		var li=document.createElement("li");
+		li.innerHTML=family.name; 
+		var ul=document.createElement("ul");
+		if(family.children.length!=0) 
+			for(i=0;i<family.children.length;i++)
+				for (var key in family) 
+					if (typeof family[key] == 'object')
+						ul.appendChild(tree(family.children[i]));
+			li.appendChild(ul);
 		return li;
-    }
+	}
   ul=document.createElement("ul");
-  ul.appendChild(tree(family));
+  ul.appendChild(tree(changeFamily));
   document.getElementsByTagName("body")[0].appendChild(ul);
 </script>
 </body>
