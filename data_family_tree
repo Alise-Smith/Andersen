@@ -1,0 +1,12 @@
+var family={
+			name:"Family",
+			children:[{
+				      name:"child1",
+					  children:[{
+						       name:"child2",
+							   children:[]
+							   }]
+					  }]
+			   }
+			   
+			   
